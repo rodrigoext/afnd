@@ -13,3 +13,4 @@ if __name__ == '__main__':
     finais = list('0')
     afnd = AFND(estados, alfabeto, transicoes, inicial, finais)
     print afnd.reconhecer('aaaabbb')
+    print afnd.reconhecer('aaaaabbb')

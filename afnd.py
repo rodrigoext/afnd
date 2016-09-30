@@ -10,5 +10,5 @@ class AFND(object):
     def reconhecer(self, palavra):
         estado_atual = self.inicial
         for simbolo in palavra:
-            print simbolo
+            estado_atual = self.transicoes[(estado_atual, simbolo)]
         return estado_atual in self.finais
