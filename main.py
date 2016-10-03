@@ -6,11 +6,12 @@ if __name__ == '__main__':
     transicoes = {
         ('0', 'a') : '1',
         ('0', 'b') : ['0', '1'],
+        #('0', 'b') : '0',
         ('1', 'a') : '0',
         ('1', 'b') : '1'
     }
     inicial = '0'
     finais = list('0')
     afnd = AFND(estados, alfabeto, transicoes, inicial, finais)
-    print afnd.reconhecer('aaaabbb')
-    print afnd.reconhecer('aaaaabbb')
+    print afnd.reconhecer('abab')
+    #print afnd.reconhecer('aaaaabbb')
