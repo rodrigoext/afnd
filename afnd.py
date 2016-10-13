@@ -10,14 +10,15 @@ class AFND(object):
     def reconhecer(self, palavra):
         estado_atual = self.inicial
         for simbolo in palavra:
-            #if isinstance(estado_atual, list):
             estado_atual_temp = []
             for estado in list(estado_atual):
-                proximos_estados = list(self.transicoes[(estado, simbolo)])
-                for proximo_estado in proximos_estados:
+                for proximo_estado in self.transicoes[(estado, simbolo)]:
                     estado_atual_temp.append(proximo_estado)
             estado_atual = estado_atual_temp
-            print estado_atual
-        #return estado_atual in self.finais
+            #print estado_atual
         aceita = [x for x in estado_atual if x in self.finais]
+        if (len(aceita) > 0):
+            print ''.join(['O automato RECONHECEU ', palavra])
+        else:
+            print ''.join(['O automato NAO RECONHECEU ', palavra])
         return len(aceita) > 0
