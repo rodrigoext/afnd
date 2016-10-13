@@ -12,11 +12,14 @@ class AFND(object):
         if (self.inicial[0], '&') in self.transicoes:
             estado_atual = self.transicoes[(self.inicial[0], '&')]
         for simbolo in palavra:
-            aux = []
+            aux = estado_atual
             for estado in list(estado_atual):
                 if (estado, '&') in self.transicoes:
                     for epsilon in self.transicoes[(estado, '&')]:
                         aux.append(epsilon)
+            estado_atual = aux
+            aux = []
+            for estado in list(estado_atual):
                 if (estado, simbolo) in self.transicoes:
                     proximos_estados = self.transicoes[(estado, simbolo)]
                     for proximo_estado in self.transicoes[(estado, simbolo)]:
