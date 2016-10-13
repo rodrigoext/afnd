@@ -1,20 +1,5 @@
 from afnd import AFND
 
-def teste1():
-    estados = list(['0','1'])
-    alfabeto = list('ab')
-    transicoes = {
-        ('0', 'a') : ['1'],
-        ('0', 'b') : ['0', '1'],
-        ('1', 'a') : ['0'],
-        ('1', 'b') : ['1']
-    }
-    inicial = '0'
-    finais = list('0')
-    afnd = AFND(estados, alfabeto, transicoes, inicial, finais)
-    afnd.reconhecer('abab')
-    afnd.reconhecer('aaaaabbb')
-
 """ 
     Seja M um automato finito nao deterministico, 
     com alfabeto binario, tal que, a entrada termine com 1
@@ -23,7 +8,7 @@ def teste1():
         | 0 |  1  |
        p|{p}|{p,q}|
        q| @ |  @  |                                     """
-def teste2():
+def teste1():
     estados = list(['p', 'q'])
     alfabeto = list('01')
     transicoes = {
@@ -36,10 +21,11 @@ def teste2():
     afnd.reconhecer('1')
     afnd.reconhecer('00')
     afnd.reconhecer('001')
+
 """
 Automato para a expressao regular a* U (ab)*
 """
-def teste3():
+def teste2():
     estados = list(['q0', 'q1', 'q2', 'q3'])
     alfabeto = list('ab')
     transicoes = {
@@ -56,11 +42,12 @@ def teste3():
     afnd.reconhecer('ba')
     afnd.reconhecer('aba')
     afnd.reconhecer('abab')
+
 """
 Automato que aceita todas as palavras onde o ultimo simbolo
 eh 0 ou contem somente 1s.
 """
-def teste4():
+def teste3():
     estados = list(['A', 'B', 'C', 'D'])
     alfabeto = list('01')
     transicoes = {
@@ -76,7 +63,11 @@ def teste4():
     afnd.reconhecer('111110000000')
     afnd.reconhecer('101')
 
-def teste5():
+"""
+Automato para a expressao regular a* U (ab)*, 
+usando epsilon transicoes
+"""
+def teste4():
     estados = list(['q0', 'q1', 'q2', 'q3', 'q4'])
     alfabeto = list('ab')
     transicoes = {
@@ -96,8 +87,10 @@ def teste5():
     afnd.reconhecer('abab')
 
 if __name__ == '__main__':
-    #teste1()
-    #teste2()
-    #teste3()
-    #teste4()
-    teste5()
+    teste1()
+    print '----'
+    teste2()
+    print '----'
+    teste3()
+    print '----'
+    teste4()

@@ -9,8 +9,10 @@ class AFND(object):
     
     def reconhecer(self, palavra):
         estado_atual = self.inicial
+        
         if (self.inicial[0], '&') in self.transicoes:
             estado_atual = self.transicoes[(self.inicial[0], '&')]
+        
         for simbolo in palavra:
             aux = estado_atual
             for estado in list(estado_atual):
@@ -26,8 +28,9 @@ class AFND(object):
                         aux.append(proximo_estado)
             estado_atual = aux
         aceita = [x for x in estado_atual if x in self.finais]
+        
         if (len(aceita) > 0):
-            print ''.join(['O automato RECONHECEU ', palavra])
+            print ''.join(['O automato RECONHECEU       ', palavra])
         else:
-            print ''.join(['O automato NAO RECONHECEU ', palavra])
+            print ''.join(['O automato NAO RECONHECEU   ', palavra])
         return len(aceita) > 0
