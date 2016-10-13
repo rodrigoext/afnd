@@ -15,27 +15,49 @@ def teste1():
     afnd.reconhecer('abab')
     afnd.reconhecer('aaaaabbb')
 
-""" Seja M um automato finito nao deterministico, 
-# com alfabeto binario, tal que, a entrada termine com 1
-# Definicao formal M = ({p,q}, {0,1}, T, p, {q}), onde T
-# eh definido por:
-#    | 0 |  1  |
-#   p|{p}|{p,q}|
-#   q| @ |  @  |"""
+""" 
+    Seja M um automato finito nao deterministico, 
+    com alfabeto binario, tal que, a entrada termine com 1
+    Definicao formal M = ({p,q}, {0,1}, T, p, {q}), onde T
+    eh definido por:
+        | 0 |  1  |
+       p|{p}|{p,q}|
+       q| @ |  @  |                                     """
 def teste2():
-    estados = list(['pq', 's'])
-    alfabeto = list("01")
+    estados = list(['p', 'q'])
+    alfabeto = list('01')
     transicoes = {
-        ('pq', '0') : ['pq'],
-        ('pq', '1') : ['pq', 's'],
+        ('p', '0') : ['p'],
+        ('p', '1') : ['p', 'q'],
     }
-    inicial = list(['pq'])
-    finais = list('s')
+    inicial = list(['p'])
+    finais = list('q')
     afnd = AFND(estados, alfabeto, transicoes, inicial, finais)
     afnd.reconhecer('1')
     afnd.reconhecer('00')
     afnd.reconhecer('001')
+"""
+Automato para a expressao regular a* U (ab)*
+"""
+def teste3():
+    estados = list(['q0', 'q1', 'q2', 'q3'])
+    alfabeto = list('ab')
+    transicoes = {
+        ('q0', 'a') : ['q1', 'q2'],
+        ('q1', 'a') : ['q1'],
+        ('q2', 'b') : ['q3'],
+        ('q3', 'a') : ['q2']
+    }
+    inicial = list(['q0'])
+    finais = list(['q0', 'q1', 'q3'])
+    afnd = AFND(estados, alfabeto, transicoes, inicial, finais)
+    afnd.reconhecer('a')
+    afnd.reconhecer('ab')
+    afnd.reconhecer('ba')
+    afnd.reconhecer('aba')
+    afnd.reconhecer('abab')
 
 if __name__ == '__main__':
-    teste1()
-    teste2()
+    #teste1()
+    #teste2()
+    teste3()
