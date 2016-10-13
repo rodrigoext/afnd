@@ -56,8 +56,27 @@ def teste3():
     afnd.reconhecer('ba')
     afnd.reconhecer('aba')
     afnd.reconhecer('abab')
-
+"""
+Automato que aceita todas as palavras onde o ultimo simbolo
+eh 0 ou contem somente 1’s.
+"""
+def teste4():
+    estados = list(['A', 'B', 'C', 'D'])
+    alfabeto = list('01')
+    transicoes = {
+        ('B', '&') : ['A', 'C'],
+        ('A', '1') : ['A'],
+        ('C', '0') : ['C', 'D'],
+        ('C', '1') : ['C']
+    }
+    inicial = list(['B'])
+    finais = list(['A', 'D'])
+    afnd = AFND(estados, alfabeto, transicoes, inicial, finais)
+    afnd.reconhecer('1')
+    afnd.reconhecer('111110000000')
+    afnd.reconhecer('101')
 if __name__ == '__main__':
     #teste1()
     #teste2()
-    teste3()
+    #teste3()
+    teste4()
