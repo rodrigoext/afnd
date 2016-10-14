@@ -45,7 +45,7 @@ def teste2():
 
 """
 Automato que aceita todas as palavras onde o ultimo simbolo
-eh 0 ou contem somente 1s.
+eh 0 ou contem somente 1s, usando epsilon transicoes.
 """
 def teste3():
     estados = list(['A', 'B', 'C', 'D'])
@@ -86,11 +86,29 @@ def teste4():
     afnd.reconhecer('aba')
     afnd.reconhecer('abab')
 
+def teste5():
+    estados = list(['q0', 'q1'])
+    alfabeto = list('ab')
+    transicoes = {
+        ('q0', '&') : ['q1'],
+        ('q1', '&') : ['q0'],
+        ('q1', 'a') : ['q1']
+    }
+    inicial = list(['q0'])
+    finais = list(['q1'])
+    afnd = AFND(estados, alfabeto, transicoes, inicial, finais)
+    afnd.reconhecer('a')
+    afnd.reconhecer('')
+    afnd.reconhecer('b')
+    afnd.reconhecer('ba')
+
 if __name__ == '__main__':
-    teste1()
+    #teste1()
     print '----'
-    teste2()
+    #teste2()
     print '----'
-    teste3()
+    #teste3()
     print '----'
     teste4()
+    print '----'
+    teste5()

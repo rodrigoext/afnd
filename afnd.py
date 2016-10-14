@@ -17,9 +17,10 @@ class AFND(object):
             aux = estado_atual
             for estado in list(estado_atual):
                 if (estado, '&') in self.transicoes:
-                    for epsilon in self.transicoes[(estado, '&')]:
-                        aux.append(epsilon)
+                    epsilon_transicoes = self.transicoes[(estado, '&')]
+                    aux = list(set().union(aux, epsilon_transicoes))
             estado_atual = aux
+            print estado_atual
             aux = []
             for estado in list(estado_atual):
                 if (estado, simbolo) in self.transicoes:
